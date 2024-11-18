@@ -152,7 +152,7 @@ const App = () => {
   const { comments, setComments } = useComments();
   const [type, setType] = useState("hot");
   // 2 删除评论
-  const handleDel = (uid) => () => {
+  const handleDel = (uid) => {
     // 过滤掉被删除的评论
     setComments(comments.filter((item) => item.user.uid !== uid));
   };

@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "classname": "^0.0.0",
-    "dayjs": "^1.11.13",
-    "lodash": "^4.17.21",
-    "uuid": "^11.0.3"
-  }
-}
