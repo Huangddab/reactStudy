@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="decrement">-</button>
+  <span id="count">0</span>
+  <button id="increment">+</button>
+
+  <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+
+  <script>
+    // 定义reducer函数
+    // 内部主要的工作是根据不同的action 返回不同的state
+    //   1 定义reducer函数 主要逻辑 action中存储修改的数据
+    function counterReducer(state = { count: 0 }, action) {
+      switch (action.type) {
+        case "INCREMENT":
+          return { count: state.count + 1 };
+        case "DECREMENT":
+          return { count: state.count - 1 };
+        default:
+          return state;
+      }
+    }
+    // 2 使用reducer函数生成store实例
+    const store = Redux.createStore(counterReducer);
+
+    // 3 订阅数据变化
+    store.subscribe(() => {
+      console.log(store.getState());
+      document.getElementById("count").innerText = store.getState().count;
+    });
+    //  4 增 dispatch修改数据type
+    const inBtn = document.getElementById("increment");
+    inBtn.addEventListener("click", () => {
+      store.dispatch({
+        type: "INCREMENT",
+      });
+    });
+    // 减 dispatch修改数据type
+    const dBtn = document.getElementById("decrement");
+    dBtn.addEventListener("click", () => {
+      store.dispatch({
+        type: "DECREMENT",
+      });
+    });
+  </script>
+</body>
+
+</html>
