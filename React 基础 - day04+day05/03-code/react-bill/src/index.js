@@ -1,15 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import sum from "@/test";
+// import App from "./App";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+// 导入定制主题文件
+import './theme.css'
+import { Provider } from "react-redux";
+import store from "./store";
 
-console.log("====================================");
-console.log(sum(1, 2));
-console.log("====================================");
+// reduex配置
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
   // 严格模式
-  <App />
+  // <React.StrictMode>
+  // <App />
   // </React.StrictMode>
 );

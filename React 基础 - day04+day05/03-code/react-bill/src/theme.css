@@ -1,0 +1,9 @@
+/* 全局定制 */
+:root:root {
+  --adm-color-primary: rgb(105, 174, 120);
+}
+
+/* 局部定制 */
+/* .purple {
+  --adm-color-primary: rgb(105, 174, 120);
+} */
