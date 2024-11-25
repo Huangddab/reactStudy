@@ -3,6 +3,9 @@
 import { delToken, getToken, request } from "@/utils";
 import { createSlice } from "@reduxjs/toolkit";
 import { setToken as _setToken } from "@/utils";
+import { getUserInfo, loginApi } from "@/apis/user";
+
+
 // redux是基于浏览器内存的存储方式，刷新时状态恢复为初始值，需要持久化他使用localStorage
 const userStore = createSlice({
     name: 'user',
@@ -44,14 +47,26 @@ const userReducer = userStore.reducer
 const fetchLogin = (loginForm) => {
     return async (dispatch) => {
         // 1 发送异步请求
-        const res = await request.post('/authorizations', loginForm)
+        // const res = await request.post('/authorizations', loginForm)
+        // 换成封装api
+        const res = await loginApi(loginForm)
         // 2 提交给同步函数存入token
         dispatch(setToken(res.data.token))
     }
 }
 const fetchUserInfo = () => {
     return async (dispatch) => {
-        const res = await request.get('/user/profile')
+        // const res = await request.get('/user/profile')
+        const res = await getUserInfo()
+
+
+
+
+
+
+
+
+        
         dispatch(setUserInfo(res.data))
     }
 }
