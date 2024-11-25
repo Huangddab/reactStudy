@@ -1,0 +1,17 @@
+// sass可以嵌套使用，变量使用等
+// body{
+//   div{
+//     color: red;
+//   }
+// }
+
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
