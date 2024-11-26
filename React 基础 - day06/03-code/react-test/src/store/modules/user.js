@@ -58,15 +58,6 @@ const fetchUserInfo = () => {
     return async (dispatch) => {
         // const res = await request.get('/user/profile')
         const res = await getUserInfo()
-
-
-
-
-
-
-
-
-        
         dispatch(setUserInfo(res.data))
     }
 }

@@ -14,6 +14,6 @@ export function loginApi(formData) {
 export function getUserInfo() {
     return request({
         url: '/user/profile',
-        method: 'POST'
+        method: 'GET' // 写错成POST 报403 
     })
 }
