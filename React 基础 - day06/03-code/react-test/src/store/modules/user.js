@@ -1,6 +1,6 @@
 // 和用户相关的状态管理哦
 
-import { delToken, getToken, request } from "@/utils";
+import { delToken, getToken } from "@/utils";
 import { createSlice } from "@reduxjs/toolkit";
 import { setToken as _setToken } from "@/utils";
 import { getUserInfo, loginApi } from "@/apis/user";
