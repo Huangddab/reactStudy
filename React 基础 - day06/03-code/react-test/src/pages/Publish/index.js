@@ -17,24 +17,28 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useEffect, useState } from 'react'
 import { craeteArticlApi, getChannelApi } from '@/apis/article'
+import { useChannel } from '@/hooks/useChannel'
 const { Option } = Select
 
 const Publish = () => {
-    // 获取频道列表
-    const [channelList, setChannelList] = useState([])
+
     // 保存图片
     const [imageList, setImageList] = useState([])
     const [imageType, setImageType] = useState(0)
 
-    useEffect(() => {
-        // 调用接口
-        const getChannelList = async () => {
-            const res = await getChannelApi()
-            setChannelList(res.data.channels)
-        }
-        getChannelList()
-    }, [])
+    // 获取频道列表 封装成hook
+    // const [channelList, setChannelList] = useState([])
 
+    // useEffect(() => {
+    //     // 调用接口
+    //     const getChannelList = async () => {
+    //         const res = await getChannelApi()
+    //         setChannelList(res.data.channels)
+    //     }
+    //     getChannelList()
+    // }, [])
+
+    const { channelList } = useChannel()
     // 表单提交操作
     const onmFinishHandle = async (formValue) => {
         // 按照接口文档处理数据
@@ -57,12 +61,12 @@ const Publish = () => {
     // 上传图片
 
     const onUploadChanege = async (value) => {
-        console.log('value', value);
+        // console.log('value', value);
         setImageList(value.fileList)
     }
     // 切换图片类型
     const onImageType = (value) => {
-        console.log('va', value.target.value);
+        // console.log('va', value.target.value);
         setImageType(value.target.value)
 
     }

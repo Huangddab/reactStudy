@@ -11,7 +11,7 @@ const Login = () => {
 
     const onFinish = async (formValue) => {
         // 获取到表单数据
-        console.log('formValue', formValue);
+        // console.log('formValue', formValue);
         // 触发异步action存入token
         await dispatch(fetchLogin(formValue))
         // 跳转到首页

@@ -49,7 +49,7 @@ const items = [
 const GeekLayout = () => {
     const navigate = useNavigate()
     const onMenuCLink = (route) => {
-        console.log('2', route);
+        // console.log('2', route);
         const path = route.key
         navigate(path)
     }
