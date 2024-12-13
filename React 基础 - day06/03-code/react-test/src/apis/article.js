@@ -18,10 +18,20 @@ export function craeteArticlApi(data) {
 }
 
 // 上传图片
-export function uploadImage(data){
+export function uploadImage(data) {
     return request({
-        url:'upload',
-        method:'POST',
+        url: 'upload',
+        method: 'POST',
         data
     })
 }
+
+// 获取文章列表
+export function getArticleListAPI(params) {
+    return request({
+        url: "/mp/articles",
+        method: 'GET',
+        params
+    })
+}
+
