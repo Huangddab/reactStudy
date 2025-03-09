@@ -3,13 +3,21 @@
 <button id="increment">+</button>
 
 <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+<!-- 不和任何框架绑定，不使用任何构建工具，使用纯redux实现计时器 -->
+<!-- 
+state:一个对象存放我们管理的数据状态
+action:一个对象，描述我们想要做什么样的修改
+reducer:一个函数，根据不同的action对象，返回不同的新的state
+Action->Reducer->State->view
+-->
+<!-- 
 
 <script>
   // 1. 定义reducer函数 
   // 作用: 根据不同的action对象，返回不同的新的state
   // state: 管理的数据初始状态
   // action: 对象 type 标记当前想要做什么样的修改
-  function reducer (state = { count: 0 }, action) {
+  function reducer(state = { count: 0 }, action) {
     // 数据不可变：基于原始状态生成一个新的状态
     if (action.type === 'INCREMENT') {
       return { count: state.count + 1 }
@@ -49,4 +57,67 @@
 
   // 5. 通过store实例的getState方法获取最新状态更新到视图中
 
+</script> -->
+
+
+
+
+<!-- 不和任何框架绑定，不使用任何构建工具，使用纯redux实现计时器 -->
+<!-- 
+state:一个对象存放我们管理的数据状态
+action:一个对象，描述我们想要做什么样的修改
+reducer:一个函数，根据不同的action对象，返回不同的新的state
+Action->Reducer->State->view
+
+​农田（Store）​：作为整个系统的核心，负责存储和管理作物的状态（state）。
+​农夫（Reducer）​：负责根据不同的指令（action）来种植或收割作物，改变农田的状态。
+​指令（Action）​：农夫收到的命令，比如播种、浇水、收割等，告诉农夫需要做什么。
+​派发指令（Dispatch）​：农夫接收到指令的方式，比如通过电话或信件。
+​观察者（Subscribe）​：比如农田的监控系统，当农田的状态发生变化时，自动通知相关人员更新显示。
+-->
+<!-- 农田的三个核心区域 -->
+<button id="decrement">收割作物</button>
+当前作物数量：<span id="count">0</span>
+<button id="increment">播种作物</button>
+
+<!-- <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script> -->
+<script src="https://unpkg.com/redux@4.2.0/dist/redux.min.js"></script>
+
+<script>
+  /* 农田生态系统组成 */
+
+  // 1. 农田管理员（Reducer）
+  // 职责：根据农事指令决定如何培育农田
+  function farmCaretaker(currentCrop = { count: 0 }, farmingAction) {
+    // 保持农田生态平衡，每次培育都生成新土壤
+    if (farmingAction.type === 'FERTILIZE') {  // 施肥指令
+      return { count: currentCrop.count + 1 }  // 作物增产
+    }
+    if (farmingAction.type === 'HARVEST') {    // 收割指令
+      return { count: currentCrop.count - 1 }  // 作物减少
+    }
+    return currentCrop  // 无指令时保持现状
+  }
+
+  // 2. 农田本体（Store）
+  // 特征：集中存储所有作物状态，具有完整的培育流程控制系统
+  const farmland = Redux.createStore(farmCaretaker)
+
+  // 3. 农业监控系统（Subscribe）
+  // 功能：实时监测农田状态变化
+  farmland.subscribe(() => {
+    console.log('农田状态更新:', farmland.getState())
+    document.getElementById('count').innerText = farmland.getState().count
+  })
+
+  // 4. 农事操作指令（Action Dispatch）
+  // 播种按钮（相当于施肥指令）
+  document.getElementById('increment').addEventListener('click', () => {
+    farmland.dispatch({ type: 'FERTILIZE' })  // 派发施肥指令
+  })
+
+  // 收割按钮（实际收割操作）
+  document.getElementById('decrement').addEventListener('click', () => {
+    farmland.dispatch({ type: 'HARVEST' })  // 派发收割指令
+  })
 </script>
